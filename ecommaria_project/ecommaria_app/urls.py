@@ -8,5 +8,5 @@ router.register('product', views.ProductView)
 router.register('category', views.CategoryView)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('api/', include(router.urls))
 ]

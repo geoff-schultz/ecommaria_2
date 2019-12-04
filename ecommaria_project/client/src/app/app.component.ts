@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { EcommariaService } from './ecommaria.service';
+import { AuthService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 
 
 @Component({
@@ -9,9 +11,18 @@ import { EcommariaService } from './ecommaria.service';
 })
 export class AppComponent {
   title = 'client';
+  private user: SocialUser;
+  private loggedIn: boolean;
 
-  constructor(private _ecommariaService : EcommariaService){
+  constructor(private authService: AuthService, private _ecommariaService : EcommariaService){
 
+  }
+ 
+  ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
   }
 
   getProducts(){
