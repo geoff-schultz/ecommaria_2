@@ -1,9 +1,16 @@
-<head>
-    <base href="/">
-</head>
-<h1>Products In Djangular</h1>
+<body>
+    <h1>Hello Ducky!</h1>
+    <button (click)="signInWithGoogle()">Sign in with Google</button>
+    <button (click)="signOut()">Sign Out</button>
 
-<button (click)="getProducts()">Get All</button>
-<button (click)="makeProduct()">Make</button>
+    <div *ngIf="user">
+    <img src="{{ user.photoUrl }}">
+    <div>
+      <h4>{{ user.name }}</h4>
+      <p>{{ user.email }}</p>
+    </div>
+</div>
+    
+    <router-outlet></router-outlet>
 
-<router-outlet></router-outlet>
+</body>
