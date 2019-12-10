@@ -12,29 +12,15 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private cookieValue = 'UNKNOWN';
   private user: SocialUser;
   private loggedIn: boolean;
   private signin_body = new FormData()
+  private backendUser;
 
   constructor(private authService: AuthService, private _httpService: HttpService, private cookieService: CookieService) { }
   
   ngOnInit() {
-this.backendSignIn();
-
-  //   if(!this.cookieService.get("Site")){
-  //     console.log("Creating Cookie")
-  //   this.cookieService.set( 'Site', 'Ecommaria' );
-  //   this.cookieValue = this.cookieService.get('Site');
-  // }
-  // else {
-  //   this.cookieValue = this.cookieService.get("Site")
-  //   console.log(this.cookieValue)
-  //   if(this.cookieService.get("LogInStatus") === "True"){
-  //     this.user = this.cookieService.get("User")
-  //   }
-
-    // }
+    this.backendSignIn();
   }
 
 
@@ -51,8 +37,12 @@ backendSignIn(){
             this.signin_body.set("backend", "google-oauth2")
             this.signin_body.set("token", user.authToken)
             console.log(this.signin_body.getAll("grant_type"))
-            this._httpService.signIn(this.signin_body)
+            let tempObservable = this._httpService.signIn(this.signin_body)
+            tempObservable.subscribe((data)=>{
+              this.backendUser = data;
+            })
         }
+
   })
 }
 

@@ -11,6 +11,10 @@ import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+
+
 
 //config as per tutorial
 let config = new AuthServiceConfig([
@@ -31,7 +35,9 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateProductComponent,
+    ManageProductsComponent
   ],
   imports: [
     BrowserModule,

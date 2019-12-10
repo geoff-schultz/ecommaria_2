@@ -19,7 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('rest_framework_social_oauth2.urls')),
-    path('', include('ecommaria_app.urls')),
-    # path('api/products', Products.as_view()),
-    # path('api/products/<int:product_id>', ProductDetails.as_view())
+    path('', include('ecommaria_app.urls'))
 ]

@@ -11,17 +11,7 @@ export class HttpService {
   }
 
   signIn(signin_body){
-
-    const observable = this._http.post("auth/convert-token", signin_body)
-    observable.subscribe((data)=>{console.log(data)})    
-    
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', 'auth/convert-token');
-    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // xhr.onload = function() {
-    //   console.log(xhr);
-    // };
-    // xhr.send("grant_type=convert_token&client_id="+signin_body.getAll("client_id")+"&client_secret="+signin_body.getAll("client_secret")+"&backend=google-oauth2&token="+signin_body.getAll("token"));
+    return this._http.post("auth/convert-token", signin_body)
 
   }
 
