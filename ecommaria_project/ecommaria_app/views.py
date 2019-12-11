@@ -6,6 +6,8 @@ from .serializers import ProductSerializer, CategorySerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework_social_oauth2.authentication import SocialAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.exceptions import ParseError
+from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -30,3 +32,4 @@ class ProductView(viewsets.ModelViewSet, APIView):
 class CategoryView(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'ecommaria_app',
+    'uploadapp',
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',
@@ -105,7 +106,7 @@ AUTHENTICATION_BACKENDS = (
 
 # Google configuration
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '532114875168-vuiqei9m4ev3mpcffshsji2nch80jtd6.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '?????????????????????????'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '???????????????????????????????'
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
@@ -188,3 +189,5 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'client/dist/client')
 STATICFILES_STORAGE = 'spa.storage.SPAStaticFilesStorage'
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
