@@ -11,7 +11,7 @@
             <ul class="navbar-nav">
               <div *ngIf="backendUser then thenManage"></div>
               <ng-template #thenManage>
-              <li *ngIf="backendUser.scope as 'Read Write'" class="nav-item active">
+              <li *ngIf="backendUser.scope as 'read write'" class="nav-item active">
                 <a [routerLink]="['/product/manage']" class="nav-link">Manage Products</a></li>
               </ng-template>
               <li class="nav-item">
@@ -35,12 +35,11 @@
         </nav>
         
         <h1>Hello Ducky!</h1>
-        <div *ngIf="backendUser">
-        <div *ngFor="let pair of backendUser | keyvalue">
+        <p>{{ auth }}</p>
+        <div *ngIf="signin_body">
+        <div *ngFor="let pair of signin_body.entries | keyvalue">
           <p>{{pair.key}} : {{pair.value}}</p>
         </div>
-
-        <p>{{user.authToken}}</p>
       </div>
         
         <router-outlet></router-outlet>

@@ -15,7 +15,7 @@ from rest_framework.views import APIView
 
 
 class ProductView(viewsets.ModelViewSet, APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, SocialAuthentication,]
+    authentication_classes = [SocialAuthentication, SessionAuthentication, BasicAuthentication, ]
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):

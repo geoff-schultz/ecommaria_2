@@ -9,6 +9,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-logi
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
+import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { CreateProductComponent } from './create-product/create-product.component';
@@ -47,6 +48,7 @@ export function provideConfig() {
   ],
   providers: [
     HttpService,
+    DataService,
     CookieService,
     {
       provide: AuthServiceConfig,

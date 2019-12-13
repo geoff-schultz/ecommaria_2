@@ -11,8 +11,12 @@ export class HttpService {
   }
 
   signIn(signin_body){
-    return this._http.post("auth/convert-token", signin_body)
-
+    console.log("Posting sign in to back end:")
+    for (var pair of signin_body.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+  }
+    return  this._http.post("auth/convert-token/", signin_body)
+    // tempObservable.subscribe(data => console.log("Got Stuff!", data));
   }
 
   getProducts(){
