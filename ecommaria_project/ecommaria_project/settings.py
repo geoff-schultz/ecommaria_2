@@ -104,9 +104,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+
 # Google configuration
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '532114875168-vuiqei9m4ev3mpcffshsji2nch80jtd6.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '??????????????????'
+with open(os.path.dirname(__file__)+'/secret_key.txt') as f:
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f.read().strip()
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [

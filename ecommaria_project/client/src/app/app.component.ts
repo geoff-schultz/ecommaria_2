@@ -70,5 +70,11 @@ backendSignIn(){
     this._data.changeAuth(auth)
   }
 
+  getAllProducts(){
+    this._httpService.getProducts(this.auth).toPromise()
+    .then((data)=>console.log(data))
+    .catch((err)=>console.log(err))
+  }
+
 
  }

@@ -7,7 +7,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HttpService {
 
   constructor(private _http: HttpClient) { 
-
   }
 
   signIn(signin_body){
@@ -19,11 +18,9 @@ export class HttpService {
     // tempObservable.subscribe(data => console.log("Got Stuff!", data));
   }
 
-  getProducts(){
-    // our http response is an Observable, store it in a variable
-    let tempObservable = this._http.get('api/product');
-    // subscribe to the Observable and provide the code we would like to do with our data from the response
-    tempObservable.subscribe(data => console.log("Got Stuff!", data));
+  getProducts(auth){
+    return this._http.get('api/product', { headers: new HttpHeaders().set('Authorization', `bearer google ${auth}`)});
+
  }
 
  submitProduct(product, auth){
