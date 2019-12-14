@@ -1,1 +1,22 @@
 <p>create-product works!</p>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+    <div class="form-group col-10">
+    <label class="form-label" for="name">Name:</label>
+    <input class="form-control" formControlName="name" placeholder="Product name..." required>
+    <div class="mt-0 mb-0 pt-0 pb-0" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <small class="text-danger" *ngIf="name.errors.required"> Name is required. </small>
+        <small class="text-danger" *ngIf="name.errors.minlength">Name must be at least 4 characters long.</small>
+    </div>
+    <label class="form-label" for="price">Price:</label>
+    <input class="form-control" formControlName="price" placeholder="19.99">
+    <label class="form-label" for="description">Description:</label>
+    <textarea class="form-control" formControlName="description" placeholder="describe the product..."></textarea>
+    <div *ngIf="description.invalid && (description.dirty || description.touched)">
+        <small class="text-danger" *ngIf="description.errors.required"> Description is required. </small>
+        <small class="text-danger" *ngIf="description.errors.minlength">Description must be at least 4 characters long.</small>
+    </div>
+  
+    <button class="btn btn-sm btn-primary mt-2" type="submit">Submit</button>
+</div>
+  </form>

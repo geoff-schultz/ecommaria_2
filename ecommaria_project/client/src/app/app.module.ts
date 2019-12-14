@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 //imported as per tutorial
@@ -45,6 +46,7 @@ export function provideConfig() {
     AppRoutingModule,
     SocialLoginModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     HttpService,
