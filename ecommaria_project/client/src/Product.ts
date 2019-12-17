@@ -5,6 +5,6 @@ export class Product {
       public name: string = '',
       public description: string = '',
       public price: number = 0,
-      public imageUrl: string = '',
+      public image: File = null,
     ){}
   }

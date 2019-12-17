@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Product } from '../../Product';
 import { HttpService } from '../http.service';
@@ -10,41 +10,34 @@ import { DataService } from '../data.service';
   styleUrls: ['./create-product.component.css']
 })
 export class CreateProductComponent implements OnInit {
-  private productForm: FormGroup;
-  private product: Product;
+  // private productForm: FormGroup;
+  private product: FormData;
   private auth: string;
+  private productForm = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(4)]],
+    price: [''],
+    description: ['', Validators.required, Validators.minLength(4), Validators.maxLength(500)],
+    image: ['', Validators.required],
+  })
 
-  constructor(private _data: DataService, private fb: FormBuilder, private _http: HttpService) { }
+  constructor(private _data: DataService, private fb: FormBuilder, private _http: HttpService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this._data.currentAuth.subscribe(auth => this.auth = auth)
-    this.productForm = this.fb.group({
-      name: new FormControl('',[
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      price: new FormControl(''),
-      description: new FormControl('',[
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(500)
-      ])
-    });
   }
 
-  onSubmit(form: FormGroup) {
-    this.product = new Product();
-    // console.log('Valid?', form.valid); // true or false
-    // console.log('Name', form.value.name);
-    // console.log('Price', form.value.price);
-    // console.log('Description', form.value.description);
-    this.product["name"] = form.value.name;
-    this.product["price"] = form.value.price;
-    this.product["description"] = form.value.description;
-    console.log(this.product)
-    this._http.submitProduct(this.product, this.auth).toPromise()
-    .then((response)=>console.log(response))
-    .catch((err)=>console.log(err))
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('name', this.productForm.get('name').value);
+    formData.append('price', this.productForm.get('price').value);
+    formData.append('description', this.productForm.get('description').value);
+    formData.append('image', this.productForm.get('image').value);
+    formData.forEach((e)=>console.log("Value from OnSubmit: ", e))
+
+    this._http.submitProduct(formData, this.auth).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
   }
 
   get name() {
@@ -57,6 +50,18 @@ export class CreateProductComponent implements OnInit {
 
   get description() {
     return this.productForm.get('description');
+  }
+
+  get image() {
+    return this.productForm.get('image');
+  }
+
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.productForm.get('image').setValue(file);
+    }
   }
 
 }

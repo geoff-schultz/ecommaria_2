@@ -37,8 +37,8 @@ backendSignIn(){
         // console.log("Is user null?", this.user)
           this.signin_body = new FormData();
             this.signin_body.append("grant_type", "convert_token")
-            this.signin_body.append("client_id", "1oQcAX8mjqx0qmRt7ELEGVXH4PsXPNFjXoBwagF7")
-            this.signin_body.append("client_secret", "KRyk6m466woOwxSXidbUAslcUDfKgSnaengmNe2DL0WJfMj9NEalExKJEpzpPoMJcQKmQLDZDupLb67VZ1MonjqTE3umFOVWy5EWsL98yWEgkJfIdcE9htzVlMgHUTif")
+            this.signin_body.append("client_id", "bZlbriSlz84wosUXiKikymsswgD4SwJq4vZMorrQ")
+            this.signin_body.append("client_secret", "F6P6k4OJ1c0WJARIEcBVFWkuucFGpkHpuiVS7BuImFInYFmlbx9yv0C2g0kliNltefMjeeFkIhqXJdcvuWfpVGR1jM81euVPAqddFitjwg2U5uA9ae1arCc67djCz8yO")
             this.signin_body.append("backend", "google-oauth2")
             this.signin_body.append("token", this.user.authToken)
             this._httpService.signIn(this.signin_body).subscribe((u)=> {
@@ -71,7 +71,7 @@ backendSignIn(){
   }
 
   getAllProducts(){
-    this._httpService.getProducts(this.auth).toPromise()
+    this._httpService.getAllProducts(this.auth).toPromise()
     .then((data)=>console.log(data))
     .catch((err)=>console.log(err))
   }

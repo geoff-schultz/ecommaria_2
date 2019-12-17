@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'ecommaria_app',
-    'uploadapp',
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',

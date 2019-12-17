@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('upload/', include('uploadapp.urls')),
+    # path('upload/', include('uploadapp.urls')),
     path('auth/', include('rest_framework_social_oauth2.urls')),
     path('', include('ecommaria_app.urls'))
 ]
