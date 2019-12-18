@@ -28,17 +28,14 @@ export class HttpService {
 
   getAllProducts(auth){
     return this._http.get('api/product', { headers: new HttpHeaders().set('Authorization', `bearer google ${auth}`)});
+ }
 
+ getProduct(p_id){
+   return this._http.get(`api/product/${p_id}` )
  }
 
  submitProduct(product, auth){
-console.log(product);
-  product.forEach((e)=>console.log('Value:', e))
-
   httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer google ${auth}`);
-  // console.log(httpOptions)
-  // return this._http.post('api/product/', product, { headers: new HttpHeaders().set('Authorization', `bearer google ${auth}`).append('Content-Type', 'multipart/form-data')});
-  // { headers: new HttpHeaders().set('Authorization', `bearer google ${auth}`)}
   return this._http.post<any>('api/product/', product, httpOptions )
  }
 

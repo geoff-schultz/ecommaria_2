@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CreateProductComponent } from './create-product/create-product.component'
 import { ManageProductsComponent } from './manage-products/manage-products.component'
+import { ProductPageComponent } from './product-page/product-page.component';
+
 
 
 const routes: Routes = [
@@ -12,7 +14,7 @@ const routes: Routes = [
     { path: 'new',component: CreateProductComponent },
   ]
 },
-  // { path: 'products/:id',component: ProductShowComponent },
+  { path: 'product/:id',component: ProductPageComponent },
   // { path: 'products/:id/edit', component: ProductEditComponent },
   { path: '', pathMatch: 'full', redirectTo: '/' },
 ];

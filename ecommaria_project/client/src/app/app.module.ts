@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 
 
@@ -39,7 +40,8 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     CreateProductComponent,
-    ManageProductsComponent
+    ManageProductsComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<p>product-page works!</p>
+
+<div *ngIf="prod">
+    <div class="row">
+        <div class="col-md m-md-4">
+            <img class="img-fluid" style="width: 100%; height: 100%;" src="{{ prod.image }}" alt="product image for {{prod.name}}">
+        </div>
+        <div class="col-md m-md-4">
+            <h1>{{ prod.name }}</h1>
+            <p>${{ prod.price }}/each</p>        
+            <p>{{ prod.description }}</p>    
+        </div>
+    
+    </div>
+</div>

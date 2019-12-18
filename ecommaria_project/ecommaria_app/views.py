@@ -4,6 +4,8 @@ from rest_framework.parsers import FileUploadParser
 from .models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
 
+from .vision import detect_labels
+
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework_social_oauth2.authentication import SocialAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
@@ -17,13 +19,15 @@ from rest_framework.views import APIView
 
 class ProductView(viewsets.ModelViewSet, APIView):
     authentication_classes = [SocialAuthentication, SessionAuthentication, BasicAuthentication, ]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     parser_classes = [MultiPartParser,]
 
     def create(self, request, format=None):
         serializer = ProductSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
+            print("SERIALIZER DATA: ", serializer.data)
+            detect_labels(serializer.data)            
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 

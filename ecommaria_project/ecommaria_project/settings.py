@@ -108,6 +108,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '532114875168-vuiqei9m4ev3mpcffshsji2nch80jtd6.apps.googleusercontent.com'
 with open(os.path.dirname(__file__)+'/secret_key.txt') as f:
     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f.read().strip()
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=os.path.dirname(__file__)+'/ecommaria-2-5a1d5b7ba8a0.json'
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
