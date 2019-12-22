@@ -1,3 +1,6 @@
+<div *ngIf=productForm>
+<h1> Edit {{product.name}}</h1>
+
 <form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit(productForm)">
     <div class="form-group col-10">
         <label class="form-label" for="name">Name:</label>
@@ -19,9 +22,10 @@
             <div *ngIf="image.invalid && (image.dirty || image.touched)">
                 <small class="text-danger" *ngIf="image.errors.required"> Image is required. </small>
             </div>
-        <input type="file" (change)="onFileChange($event)" class="file-input" required>
+        <input type="file" (change)="onFileChange($event)" class="file-input">
 
         <button class="btn btn-sm btn-primary mt-2" type="submit" [disabled]="productForm.invalid || productForm.pristine">Submit</button>
     </div>
 </form>
 <p>Form Status: {{ productForm.status }}</p>
+</div>

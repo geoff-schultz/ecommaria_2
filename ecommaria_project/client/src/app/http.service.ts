@@ -47,6 +47,11 @@ export class HttpService {
   return this._http.post<any>('api/product/', product, httpOptions )
  }
 
+ submitProductUpdate(product, auth, p_id){
+  httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer google ${auth["access_token"]}`);
+  return this._http.patch<any>(`api/product/${p_id}/`, product, httpOptions )
+ }
+
  getCategory(c_id){
   return this._http.get(`api/category/${c_id}`)
  }

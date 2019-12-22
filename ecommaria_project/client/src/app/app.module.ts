@@ -17,6 +17,7 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 
@@ -43,7 +44,8 @@ export function provideConfig() {
     CreateProductComponent,
     ManageProductsComponent,
     ProductPageComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

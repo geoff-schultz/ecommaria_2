@@ -6,6 +6,8 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { ManageProductsComponent } from './manage-products/manage-products.component'
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+
 
 
 
@@ -13,6 +15,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 const routes: Routes = [
   // { path: 'product',component: ProductComponent },
   { path: 'product/manage',component: ManageProductsComponent, children: [
+    { path: 'edit/:id',component: EditProductComponent },
     { path: 'new',component: CreateProductComponent },
   ]
 },

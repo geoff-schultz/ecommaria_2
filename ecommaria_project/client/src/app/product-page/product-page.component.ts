@@ -12,6 +12,7 @@ import { DataService } from '../data.service';
 export class ProductPageComponent implements OnInit {
 
   private product: any;
+  private product_id: any;
   private auth: any;
   private errors = [];
   private categories = [];
@@ -27,6 +28,7 @@ export class ProductPageComponent implements OnInit {
 
   getProduct(){
     this._route.params.subscribe((params: Params) => {
+      this.product_id = params["id"];
       let tempObservable = this._http.getProduct(params["id"])
       tempObservable.subscribe((res) => {
         console.log(res)

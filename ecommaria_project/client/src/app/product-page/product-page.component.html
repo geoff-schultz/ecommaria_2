@@ -5,7 +5,10 @@
     </div>
     <div class="col-md m-md-4">
         <h1 class="d-inline">{{ product.name }}</h1>
-        <button *ngIf="auth" class="btn btn-sm btn-light btn-outline-danger mb-3 ml-3">Edit</button>
+        <div *ngIf="auth then thenManage"></div>
+        <ng-template #thenManage>
+                <button *ngIf="auth.scope as 'read write'" class="btn btn-sm btn-light btn-outline-danger mb-3 ml-3" [routerLink]="['/product/manage/edit', product_id]">Edit</button>
+              </ng-template>
     <p>${{ product.price }}/each</p>        
     <p>{{ product.description }}</p>
     <h3>Product Categories:</h3>
