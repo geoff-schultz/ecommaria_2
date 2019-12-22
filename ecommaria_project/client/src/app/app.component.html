@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col m-0 p-0" style="background-color: grey"> 
+    <div class="col m-0 p-0" style="background-color: rgba(220, 220, 220)"> 
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a class="navbar-brand" href="#">ECOMMaria</a>
@@ -9,9 +9,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <div *ngIf="backendUser then thenManage"></div>
+              <div *ngIf="auth then thenManage"></div>
               <ng-template #thenManage>
-              <li *ngIf="backendUser.scope as 'read write'" class="nav-item active">
+              <li *ngIf="auth.scope as 'read write'" class="nav-item active">
                 <a [routerLink]="['/product/manage']" class="nav-link">Manage Products</a></li>
               </ng-template>
               <li class="nav-item">
@@ -37,7 +37,7 @@
         
         <router-outlet></router-outlet>
 
-        <p>{{ auth }}</p>
+        <p>{{ auth["access_token"] }}</p>
 
 
     </div>

@@ -14,15 +14,16 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AppComponent implements OnInit {
   private user: SocialUser;
-  private auth: string;
+  private auth: any;
   private loggedIn: boolean;
   private signin_body: FormData;
-  private backendUser;
 
   constructor(private _data: DataService, private authService: AuthService, private _httpService: HttpService, private cookieService: CookieService) { }
   
   ngOnInit() {
-    this._data.currentAuth.subscribe(auth => this.auth = auth)
+    this._data.currentAuth.subscribe(auth => {
+      this.auth = auth
+    })
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
@@ -34,7 +35,6 @@ export class AppComponent implements OnInit {
 
 
 backendSignIn(){
-        // console.log("Is user null?", this.user)
           this.signin_body = new FormData();
             this.signin_body.append("grant_type", "convert_token")
             this.signin_body.append("client_id", "bZlbriSlz84wosUXiKikymsswgD4SwJq4vZMorrQ")
@@ -42,8 +42,8 @@ backendSignIn(){
             this.signin_body.append("backend", "google-oauth2")
             this.signin_body.append("token", this.user.authToken)
             this._httpService.signIn(this.signin_body).subscribe((u)=> {
-              this.backendUser = u
-              this.newAuth(u["access_token"]);
+              this.newAuth(u);
+
             })
         }
 

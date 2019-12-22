@@ -11,9 +11,10 @@ import { DataService } from '../data.service';
 })
 export class ProductPageComponent implements OnInit {
 
-  private prod: any;
+  private product: any;
   private auth: any;
   private errors = [];
+  private categories = [];
 
   constructor(private _data: DataService, private _http: HttpService, private _route: ActivatedRoute, private _router: Router) { }
 
@@ -26,11 +27,19 @@ export class ProductPageComponent implements OnInit {
 
   getProduct(){
     this._route.params.subscribe((params: Params) => {
-    let tempObservable = this._http.getProduct(params["id"])
-    tempObservable.subscribe(
-      (res) => {
-        this.prod = res
-      },
+      let tempObservable = this._http.getProduct(params["id"])
+      tempObservable.subscribe((res) => {
+        console.log(res)
+        this._http.getCategoriesByProduct(params["id"]).subscribe((categories) => {
+          this.categories = categories;
+          this.categories.forEach((c)=>{
+            c["id"] = c["url"].replace('http://localhost:8000/api/category/', '').replace('/','')
+          })
+          },
+          (err) => console.log(err)
+          )
+          this.product = res
+        },
       (err) => console.log(err)
       );
   })

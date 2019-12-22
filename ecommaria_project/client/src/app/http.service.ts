@@ -19,10 +19,10 @@ export class HttpService {
   }
 
   signIn(signin_body){
-    console.log("Posting sign in to back end:")
-    for (var pair of signin_body.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]); 
-  }
+  //   console.log("Posting sign in to back end:")
+  //   for (var pair of signin_body.entries()) {
+  //     console.log(pair[0]+ ', ' + pair[1]); 
+  // }
     return  this._http.post("auth/convert-token/", signin_body)
   }
 
@@ -34,10 +34,23 @@ export class HttpService {
    return this._http.get(`api/product/${p_id}` )
  }
 
+ getProductsByCategory(c_id){
+   return this._http.get<any>(`api/product/?categories=${c_id}`)
+ }
+
+ getCategoriesByProduct(p_id){
+  return this._http.get<any>(`api/category/?products=${p_id}`)
+}
+
  submitProduct(product, auth){
   httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer google ${auth}`);
   return this._http.post<any>('api/product/', product, httpOptions )
  }
+
+ getCategory(c_id){
+  return this._http.get(`api/category/${c_id}`)
+ }
+
 
 
 }

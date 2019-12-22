@@ -1,15 +1,16 @@
-<p>product-page works!</p>
-
-<div *ngIf="prod">
-    <div class="row">
-        <div class="col-md m-md-4">
-            <img class="img-fluid" style="width: 100%; height: 100%;" src="{{ prod.image }}" alt="product image for {{prod.name}}">
-        </div>
-        <div class="col-md m-md-4">
-            <h1>{{ prod.name }}</h1>
-            <p>${{ prod.price }}/each</p>        
-            <p>{{ prod.description }}</p>    
-        </div>
-    
+<div *ngIf="product">
+<div class="row">
+    <div class="col-md m-md-4">
+        <img class="img-fluid" style="width: 100%; height: 100%;" src="{{ product.image }}" alt="product image for {{product.name}}">
     </div>
+    <div class="col-md m-md-4">
+        <h1 class="d-inline">{{ product.name }}</h1>
+        <button *ngIf="auth" class="btn btn-sm btn-light btn-outline-danger mb-3 ml-3">Edit</button>
+    <p>${{ product.price }}/each</p>        
+    <p>{{ product.description }}</p>
+    <h3>Product Categories:</h3>
+        <a *ngFor="let c of categories" class="mb-1 ml-1 btn btn-sm btn-success" [routerLink]="['/category', c.id]">{{ c.name }}</a>
+    </div>
+
+</div>
 </div>

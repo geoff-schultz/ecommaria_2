@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ProductPageComponent } from './product-page/product-page.component';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 
 
@@ -41,7 +42,8 @@ export function provideConfig() {
     AppComponent,
     CreateProductComponent,
     ManageProductsComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    CategoryPageComponent
   ],
   imports: [
     BrowserModule,

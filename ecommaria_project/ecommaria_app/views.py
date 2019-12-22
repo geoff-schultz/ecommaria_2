@@ -21,6 +21,7 @@ class ProductView(viewsets.ModelViewSet, APIView):
     authentication_classes = [SocialAuthentication, SessionAuthentication, BasicAuthentication, ]
     permission_classes = [IsAuthenticatedOrReadOnly]
     parser_classes = [MultiPartParser,]
+    filterset_fields = ('categories', )
 
     def create(self, request, format=None):
         serializer = ProductSerializer(data=request.data, context={'request': request})
@@ -30,7 +31,6 @@ class ProductView(viewsets.ModelViewSet, APIView):
             detect_labels(serializer.data)            
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
-
 
     def get(self, request, format=None):
         content = {
@@ -46,6 +46,7 @@ class ProductView(viewsets.ModelViewSet, APIView):
     serializer_class = ProductSerializer
 
 class CategoryView(viewsets.ModelViewSet):
+    filterset_fields = ('products', )
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
