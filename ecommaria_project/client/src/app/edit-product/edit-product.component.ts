@@ -26,7 +26,6 @@ export class EditProductComponent implements OnInit {
       this.auth = auth
     })
     this.getProduct()
-
   }
 
   getProduct(){
@@ -109,6 +108,19 @@ onSubmit() {
       const file = event.target.files[0];
       this.productForm.get('image').setValue(file);
     }
+  }
+
+  removeCategory(index){
+    let c_id = this.categories[index]["id"]
+    this._http.removeProductFromCategory(c_id, this.product_id, this.auth).subscribe((resp)=>{
+      if(resp["status"] == true){
+        console.log("Success")
+        this.categories.splice(index, 1)
+      }
+      else {
+        console.log("Failure, feel bad.")
+      }
+    })
   }
 
 }

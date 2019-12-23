@@ -13,6 +13,8 @@ from rest_framework.exceptions import ParseError
 from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import action
+
 
 # Create your views here.
 
@@ -32,15 +34,31 @@ class ProductView(viewsets.ModelViewSet, APIView):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-    def get(self, request, format=None):
-        content = {
-            'user': unicode(request.user),  # `django.contrib.auth.User` instance.
-            'auth': unicode(request.auth),  # None
-        }
-        print(request.user)
-        return Response(content)
+    # def get(self, request, pk, format=None):
+    #     content = {
+    #         'user': unicode(request.user),  # `django.contrib.auth.User` instance.
+    #         'auth': unicode(request.auth),  # None
+    #     }
+    #     print(request.user)
+    #     return Response(content)
 
-    
+    @action(
+        methods=['delete'],
+        detail=True,
+        url_path='category/(?P<category_pk>[^/.]+)',
+        )
+    def remove_product_from_category(self, request, pk, category_pk, format=None):
+        player = self.get_object()
+        category = Category.objects.get(id=category_pk)
+        print(category)
+        if(player.categories.filter(id=category_pk).count() > 0):
+            player.categories.remove(category)
+            if(player.categories.filter(id=category_pk).count() == 0):
+                return Response({"status" : True})
+            else:
+                return Response({"status" : False})
+        else:
+            return Response({"status": False})
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer

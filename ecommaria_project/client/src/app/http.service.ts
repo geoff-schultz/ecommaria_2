@@ -27,7 +27,7 @@ export class HttpService {
   }
 
   getAllProducts(auth){
-    return this._http.get('api/product', { headers: new HttpHeaders().set('Authorization', `bearer google ${auth}`)});
+    return this._http.get('api/product', { headers: new HttpHeaders().set('Authorization', `bearer google ${auth["access_token"]}`)});
  }
 
  getProduct(p_id){
@@ -43,13 +43,18 @@ export class HttpService {
 }
 
  submitProduct(product, auth){
-  httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer google ${auth}`);
+  httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer google ${auth["access_token"]}`);
   return this._http.post<any>('api/product/', product, httpOptions )
  }
 
  submitProductUpdate(product, auth, p_id){
   httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer google ${auth["access_token"]}`);
   return this._http.patch<any>(`api/product/${p_id}/`, product, httpOptions )
+ }
+
+ removeProductFromCategory(c_id, p_id, auth){
+  httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer google ${auth["access_token"]}`);
+  return this._http.delete<any>(`api/product/${p_id}/category/${c_id}/`, httpOptions )
  }
 
  getCategory(c_id){

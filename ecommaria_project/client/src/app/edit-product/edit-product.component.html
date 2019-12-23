@@ -28,4 +28,14 @@
     </div>
 </form>
 <p>Form Status: {{ productForm.status }}</p>
+<table>
+        <tr *ngFor="let c of categories; index as i">
+            <td>
+                {{c.id}}. {{c.name}}
+            </td>
+            <td>
+                <button (click)="removeCategory(i)" class="btn btn-sm btn-danger">Remove</button>
+            </td>
+        </tr>
+</table>
 </div>
