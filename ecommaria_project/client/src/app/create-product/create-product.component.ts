@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import { Product } from '../../Product';
 import { HttpService } from '../http.service';
 import { DataService } from '../data.service';
@@ -12,7 +13,7 @@ import { DataService } from '../data.service';
 export class CreateProductComponent implements OnInit {
 
   
-  constructor(private _data: DataService, private fb: FormBuilder, private _http: HttpService, private cd: ChangeDetectorRef) { }
+  constructor(private _data: DataService, private fb: FormBuilder, private _http: HttpService, private cd: ChangeDetectorRef, private _route: Router) { }
   private auth: string;
   private productForm: FormGroup;
   
@@ -33,6 +34,7 @@ export class CreateProductComponent implements OnInit {
       (res) => {
         console.log('Response:', res)
         this.productForm.reset()
+        this._route.navigate([`./product/${res["url"].replace('http://localhost:8000/api/product/', '').replace('/','')}`])
         
       },
       (err) => console.log(err)
