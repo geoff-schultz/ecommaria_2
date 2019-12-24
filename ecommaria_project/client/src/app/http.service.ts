@@ -26,8 +26,8 @@ export class HttpService {
     return  this._http.post("auth/convert-token/", signin_body)
   }
 
-  getAllProducts(auth){
-    return this._http.get('api/product', { headers: new HttpHeaders().set('Authorization', `bearer google ${auth["access_token"]}`)});
+  getAllProducts(){
+    return this._http.get('api/product');
  }
 
  getProduct(p_id){

@@ -7,13 +7,13 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
-
+import { ListProductComponent } from './list-product/list-product.component';
 
 
 
 
 const routes: Routes = [
-  // { path: 'product',component: ProductComponent },
+  { path: 'product',component: ListProductComponent },
   { path: 'product/manage',component: ManageProductsComponent, children: [
     { path: 'edit/:id',component: EditProductComponent },
     { path: 'new',component: CreateProductComponent },
