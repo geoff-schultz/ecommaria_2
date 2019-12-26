@@ -19,6 +19,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ListProductComponent } from './list-product/list-product.component';
+import { ListCategoryComponent } from './list-category/list-category.component';
 
 
 
@@ -47,7 +48,8 @@ export function provideConfig() {
     ProductPageComponent,
     CategoryPageComponent,
     EditProductComponent,
-    ListProductComponent
+    ListProductComponent,
+    ListCategoryComponent
   ],
   imports: [
     BrowserModule,

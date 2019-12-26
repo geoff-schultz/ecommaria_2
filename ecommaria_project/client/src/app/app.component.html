@@ -12,13 +12,13 @@
               <div *ngIf="auth then thenManage"></div>
               <ng-template #thenManage>
               <li *ngIf="auth.scope as 'read write'" class="nav-item active">
-                <a [routerLink]="['/product/manage']" class="nav-link">Manage Products</a></li>
+                <a [routerLink]="['/product/manage']" routerLinkActive="bg-success text-white" [routerLinkActiveOptions]="{exact: false}" class="nav-link">Manage Products</a></li>
               </ng-template>
               <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a [routerLink]="['/product']" routerLinkActive="bg-success text-white" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a [routerLink]="['/category']" routerLinkActive="bg-success text-white" [routerLinkActiveOptions]="{exact: false}" class="nav-link">Categories</a>
               </li>
               </ul>
                 <div class="ml-auto">
@@ -32,12 +32,8 @@
                     </div>
                   </div>
                 </div>      
-        </nav>
-        <button (click)='getAllProducts()'>Products</button>        
-        
+        </nav>        
         <router-outlet></router-outlet>
-
-        <p>{{ auth["access_token"] }}</p>
 
 
     </div>

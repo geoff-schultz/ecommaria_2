@@ -61,6 +61,10 @@ export class HttpService {
   return this._http.get(`api/category/${c_id}`)
  }
 
+ getAllCategories(){
+  return this._http.get('api/category');
+}
+
 
 
 }

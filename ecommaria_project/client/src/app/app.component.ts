@@ -4,8 +4,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
 import { SocialUser } from "angularx-social-login";
 import { HttpService } from './http.service';
 import { DataService } from "./data.service";
-import { CookieService } from 'ngx-cookie-service';
-
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit {
   private loggedIn: boolean;
   private signin_body: FormData;
 
-  constructor(private _data: DataService, private authService: AuthService, private _httpService: HttpService, private cookieService: CookieService) { }
+  constructor(private _router: Router, private _data: DataService, private authService: AuthService, private _httpService: HttpService) { }
   
   ngOnInit() {
     this._data.currentAuth.subscribe(auth => {
@@ -29,6 +28,7 @@ export class AppComponent implements OnInit {
       this.loggedIn = (user != null);
       if(this.loggedIn == true){
       this.backendSignIn();
+      this._router.navigate(['/product']);
     }
   })
 }
@@ -70,11 +70,6 @@ backendSignIn(){
     this._data.changeAuth(auth)
   }
 
-  getAllProducts(){
-    this._httpService.getAllProducts().toPromise()
-    .then((data)=>console.log(data))
-    .catch((err)=>console.log(err))
-  }
 
 
  }

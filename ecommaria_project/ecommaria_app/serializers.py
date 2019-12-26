@@ -9,6 +9,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
     
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    products = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), many=True)
     class Meta:
         model = Category
         fields = ("__all__")

@@ -1,0 +1,6 @@
+<div *ngIf="categories">
+    <h1>Categories</h1>
+    <div class="col-10">
+    <button *ngFor="let c of categories" class="btn btn-sm btn-success m-1" [routerLink]="['/category', c.id]">{{c.name}}</button>
+    </div>
+    
