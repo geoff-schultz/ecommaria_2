@@ -30,9 +30,9 @@ export class CategoryPageComponent implements OnInit {
       console.log(res)
       this._http.getProductsByCategory(params["id"]).subscribe((products) => {
         this.products = products;
-        this.products.forEach((p)=>{
-          p["id"] = p["url"].replace('http://localhost:8000/api/product/', '').replace('/','')
-        })
+        // this.products.forEach((p)=>{
+        //   p["id"] = p["url"].replace('http://localhost:8000/api/product/', '').replace('/','')
+        // })
         },
         (err) => console.log(err)
         )

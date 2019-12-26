@@ -21,9 +21,9 @@ export class ListCategoryComponent implements OnInit {
           return true;
         }})
         .sort((a, b) => (a.name > b.name) ? 1 : -1)
-      this.categories.forEach((c)=>{
-        c["id"] = c["url"].replace('http://localhost:8000/api/category/', '').replace('/','')
-      })
+      // this.categories.forEach((c)=>{
+      //   c["id"] = c["url"].replace('http://localhost:8000/api/category/', '').replace('/','')
+      // })
     },
     (err)=>console.log(err))
   }

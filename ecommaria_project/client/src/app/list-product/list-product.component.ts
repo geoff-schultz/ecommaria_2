@@ -16,9 +16,9 @@ export class ListProductComponent implements OnInit {
   ngOnInit() {
     this._http.getAllProducts().subscribe((data)=>{
       this.products = data;
-      this.products.forEach((p)=>{
-        p["id"] = p["url"].replace('http://localhost:8000/api/product/', '').replace('/','')
-      })
+      // this.products.forEach((p)=>{
+      //   p["id"] = p["url"].replace('http://localhost:8000/api/product/', '').replace('/','')
+      // })
     },
     (err)=>console.log(err))
   }

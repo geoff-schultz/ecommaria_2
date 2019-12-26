@@ -36,9 +36,9 @@ export class EditProductComponent implements OnInit {
         console.log(res)
         this._http.getCategoriesByProduct(params["id"]).subscribe((categories) => {
           this.categories = categories;
-          this.categories.forEach((c)=>{
-            c["id"] = c["url"].replace('http://localhost:8000/api/category/', '').replace('/','')
-          })
+          // this.categories.forEach((c)=>{
+          //   c["id"] = c["url"].replace('http://localhost:8000/api/category/', '').replace('/','')
+          // })
           this.createFormGroup();
           },
           (err) => console.log(err)
